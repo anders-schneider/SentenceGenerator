@@ -10,6 +10,8 @@ import java.util.Random;
 import javax.swing.JFileChooser;
 
 /**
+ * @author Anders Schneider
+ * 
  * This is my version of a CIT594 assignment to read in a BNF grammar
  * and produce sentences from that grammar.
  */
@@ -83,12 +85,22 @@ public class SentenceGenerator {
      * Prompts the user to choose a file, which should contain a BNF grammar.
      * 
      * @return The chosen file, or <code>null</code> if none is chosen.
+     * @throws IOException 
      */
-    private BufferedReader getFileReader() {
+    private BufferedReader getFileReader() throws IOException {
         BufferedReader reader = null;
+        String fileName;
         
-        // TODO: Your code goes here
-
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Load which file?");
+        int result = chooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            if (file != null) {
+                fileName = file.getCanonicalPath();
+                reader = new BufferedReader(new FileReader(fileName));
+            }
+        }
         return reader;
     }
 }

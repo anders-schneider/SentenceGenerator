@@ -14,4 +14,3 @@
 <verb phrase> ::= <intransitive verb> | <transitive verb> <noun phrase>
 <prepositional phrase> ::= <preposition> <noun phrase>
 <adjectives> ::= <adjective> | <adjective> <adjectives>
-

@@ -61,7 +61,18 @@ public class Grammar {
      * @param singleDefinition The new definition.
      */
     private void addToGrammar(String lhs, SingleDefinition singleDefinition) {
-        // TODO: Your code goes here
+		// Left off here... is this correct?
+    	
+    	ListOfDefinitions defList;        
+    	
+    	if (grammar.containsKey(lhs)) {
+    		defList = this.getDefinitions(lhs);
+    		defList.add(singleDefinition);
+    	} else {
+    		defList = new ListOfDefinitions();
+    		defList.add(singleDefinition);
+    	}
+		grammar.put(lhs, defList);
     }
 
     /**
@@ -89,9 +100,17 @@ public class Grammar {
      * Prints this Grammar.
      */
     public void print() {
+    	if (grammar.isEmpty()) {return;}
+    	
+    	String[] definiendumArr = (String[]) grammar.keySet().toArray();
+        int numDefinienda = definiendumArr.length;
         
-        // TODO: Your code goes here
-        
+        for (int i = 0; i < numDefinienda; i++) {
+        	System.out.print(definiendumArr[i]);
+        	System.out.print(" ::= ");
+        	System.out.print(this.getDefinitions(definiendumArr[i]).toString());
+        	System.out.print("\n");
+        }
     }
 
     /**

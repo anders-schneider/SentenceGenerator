@@ -23,6 +23,16 @@ public class ListOfDefinitions extends ArrayList<SingleDefinition> {
      */
     @Override
     public String toString() {
-        return null; // TODO: Your code goes here
+    	String result = "";
+    	
+    	if (this.isEmpty()) {return result;}
+    	
+    	result += this.get(0).toString();
+    	
+    	for (int i = 1; i < this.size(); i++) {
+    		result += " | " + this.get(i);
+    	}
+    	
+    	return result;
     }
 }
