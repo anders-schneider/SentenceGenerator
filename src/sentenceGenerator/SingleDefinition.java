@@ -35,6 +35,7 @@ public class SingleDefinition extends ArrayList<String> {
         
         result = this.get(0);
         
+        // Successively concatenates each term in the definition
         for (int i = 1; i < this.size(); i++) {
         	result += " " + this.get(i);
         }

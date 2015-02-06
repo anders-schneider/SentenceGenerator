@@ -40,9 +40,14 @@ public class SentenceGenerator {
      * @throws IOException If an input exception occurs.
      */
     private void run() throws IOException {
+        BufferedReader reader = getFileReader();
+        grammar = new Grammar(reader);
         
-        // TODO: Your code goes here
-        
+        for (int i = 0; i < 20; i++) {
+        	List<String> sentenceList = generate("<sentence>");
+        	printAsSentence(sentenceList);
+        }
+        reader.close();
     }
     
     /**
@@ -56,7 +61,18 @@ public class SentenceGenerator {
     List<String> generate(String term) {
         List<String> result = new ArrayList<String>();
 
-        // TODO: Your code goes here
+        if (term.startsWith("<")) {
+        	// Choose a definition of the non-terminal at random
+        	ListOfDefinitions defList = grammar.getDefinitions(term);
+        	SingleDefinition def = (SingleDefinition) chooseRandomElement(defList);
+        	for (int i = 0; i < def.size(); i++) {
+        		// Add the parts of the decomposed definition to result, recursively
+        		// calling generate to break down further non-terminals
+        		result.addAll(generate(def.get(i)));
+        	}
+        } else {
+        	result.add(term);
+        }
 
         return result;
     }
@@ -67,7 +83,7 @@ public class SentenceGenerator {
      * @param list The list from which the selection is to be made.
      * @return The randomly selected element.
      */
-    private Object chooseRandomElement(List list) {
+    public Object chooseRandomElement(List list) {
         return (list.get(random.nextInt(list.size())));
     }
 
@@ -78,7 +94,28 @@ public class SentenceGenerator {
      * @param list The words to be printed.
      */
     void printAsSentence(List<String> list) {
-        // TODO: Your code goes here
+    	String strToPrint = "";
+    	
+    	if (list.isEmpty()) {
+    		System.out.println(strToPrint);
+    		return;
+    	}
+    	
+    	strToPrint += list.get(0);
+    	
+    	// Select and capitalize the first character
+    	char firstChar = strToPrint.charAt(0);
+    	strToPrint = strToPrint.substring(1, strToPrint.length());
+    	strToPrint = Character.toUpperCase(firstChar) + strToPrint;
+    	
+    	// Concatenate each successive term
+    	for (int i = 1; i < list.size(); i++) {
+    		strToPrint += " " + list.get(i);
+    	}
+    	
+    	strToPrint += ".";
+    	
+    	System.out.println(strToPrint);
     }
     
     /**

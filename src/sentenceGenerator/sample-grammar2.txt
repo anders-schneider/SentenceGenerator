@@ -1,0 +1,23 @@
+<sentence> ::= <noun phrase> <verb phrase>
+<sentence> ::= <noun phrase> <verb phrase> <conjunction> <verb phrase>
+<sentence> ::= <salutation> <title> <name>
+<noun phrase> ::= <determiner> <noun> | <determiner> <adjectives> <noun>
+<noun phrase> ::= <determiner> <noun> <prepositional phrase>
+<noun phrase> ::= <name> | <name> <epithet>
+<verb phrase> ::= <intransitive verb> | <transitive verb> <noun phrase>
+<prepositional phrase> ::= <preposition> <noun phrase>
+<adjectives> ::= <adjective> | <adjective> <adjectives>
+
+<conjunction> ::= and | but
+<salutation> ::= hello | good day | how do you do
+<title> ::= Mr | Ms | Reverend | Judge | Brother | Sister
+<name> ::= Andy | Alisa | Ryan | Brad | Alex | Raj | Theresa | Martha | Joo
+<epithet> ::= The Great | The Terrible | The Inconsiderate | The Bashful
+<transitive verb> ::= sees | shanks | enlightens | devours | persuades
+<intransitive verb> ::= thinks | waits | runs
+<adjective> ::= marvelous | disastrous | big | small | irrelevant | subservient
+<adverb> ::= swiftly | deftly | inadvertently | arrogantly
+<determiner> ::= a | the | this | that | each | every
+<pronoun> ::= he | she | it
+<preposition> ::= in | on | of | around | about | under | over
+<noun> ::= pig | thought | phone | elf | problem | apple | parent | child | appetite

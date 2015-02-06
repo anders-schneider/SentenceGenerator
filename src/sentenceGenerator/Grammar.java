@@ -1,6 +1,7 @@
 package sentenceGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,8 +32,14 @@ public class Grammar {
     public Grammar(BufferedReader reader) throws IOException {
         grammar = new TreeMap<>();
         
-       // TODO: Your code goes here
-        
+        String line;
+        while ((line = reader.readLine()) != null) {
+        	line = line.trim();
+        	if (!"".equals(line)) {
+        		addRule(line);
+        	}
+        }
+        reader.close();        
     }
 
     /**
@@ -49,7 +56,33 @@ public class Grammar {
     public void addRule(String ruleText) throws IllegalArgumentException {
         BnfTokenizer tokenizer = new BnfTokenizer(ruleText);
 
-        // TODO: Your code goes here
+        // LHS must be a non-terminal
+        String definiendum = tokenizer.nextToken();
+        if (!isNonterminal(definiendum)) {
+        	syntaxError(ruleText);
+        }
+        
+        // LHS must be followed by "::="
+        if (!"::=".equals(tokenizer.nextToken())) {
+        	syntaxError(ruleText);
+        }
+        
+        SingleDefinition definition;
+        String term = "";
+        
+        // While there are still valid definitions, add them to the grammar
+        while (!"EOF".equals(term)) {   
+	        definition = new SingleDefinition();
+	        term = tokenizer.nextToken();
+	        
+	        // While there are still valid terms in the definition, add them to the definition
+	        while (!"|".equals(term) && !"EOF".equals(term)) {
+	        	definition.add(term);
+	        	term = tokenizer.nextToken();
+	        }
+	        
+	        this.addToGrammar(definiendum, definition);
+        }
     }
 
     /**
@@ -61,14 +94,15 @@ public class Grammar {
      * @param singleDefinition The new definition.
      */
     private void addToGrammar(String lhs, SingleDefinition singleDefinition) {
-		// Left off here... is this correct?
-    	
+		
     	ListOfDefinitions defList;        
     	
     	if (grammar.containsKey(lhs)) {
+    		// Update an existing rule with additional definition(s)
     		defList = this.getDefinitions(lhs);
     		defList.add(singleDefinition);
     	} else {
+    		// Create a new rule
     		defList = new ListOfDefinitions();
     		defList.add(singleDefinition);
     	}
@@ -102,15 +136,12 @@ public class Grammar {
     public void print() {
     	if (grammar.isEmpty()) {return;}
     	
-    	String[] definiendumArr = (String[]) grammar.keySet().toArray();
-        int numDefinienda = definiendumArr.length;
-        
-        for (int i = 0; i < numDefinienda; i++) {
-        	System.out.print(definiendumArr[i]);
+    	for (String s : grammar.keySet()) {
+    		System.out.print(s);
         	System.out.print(" ::= ");
-        	System.out.print(this.getDefinitions(definiendumArr[i]).toString());
+        	System.out.print(this.getDefinitions(s).toString());
         	System.out.print("\n");
-        }
+    	}
     }
 
     /**

@@ -29,6 +29,7 @@ public class ListOfDefinitions extends ArrayList<SingleDefinition> {
     	
     	result += this.get(0).toString();
     	
+    	// Successively concatenate definitions, separated by " | "
     	for (int i = 1; i < this.size(); i++) {
     		result += " | " + this.get(i);
     	}

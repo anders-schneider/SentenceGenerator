@@ -11,13 +11,6 @@ import org.junit.Test;
 public class ListOfDefinitionsTest {
 
     /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
      * Test method for {@link sentenceGenerator.ListOfDefinitions#toString()}.
      */
     @Test
@@ -47,5 +40,4 @@ public class ListOfDefinitionsTest {
     	
     	assertTrue("hits | sees | plays tuba".equals(defList3.toString()));
     }
-
 }

@@ -11,13 +11,6 @@ import org.junit.Test;
 public class SingleDefinitionTest {
 
     /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
      * Test method for {@link sentenceGenerator.SingleDefinition#toString()}.
      */
     @Test
@@ -40,5 +33,4 @@ public class SingleDefinitionTest {
     	oneWord.add("<noun>");
     	assertTrue("<noun>".equals(oneWord.toString()));
     }
-
 }

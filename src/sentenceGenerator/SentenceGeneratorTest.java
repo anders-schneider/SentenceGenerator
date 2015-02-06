@@ -2,6 +2,8 @@ package sentenceGenerator;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,18 +13,20 @@ import org.junit.Test;
 public class SentenceGeneratorTest {
 
     /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
      * Test method for {@link sentenceGenerator.SentenceGenerator#readGrammar()}.
      */
     @Test
-    public final void testReadGrammar() {
-        fail("Not yet implemented");
+    public final void testChooseRandomElement() {
+    	SentenceGenerator sg = new SentenceGenerator();
+    	
+    	ArrayList<Integer> arrList = new ArrayList<Integer>();
+    	arrList.add(1);
+    	arrList.add(2);
+    	arrList.add(3);
+    	arrList.add(4);
+    	arrList.add(5);
+    	
+    	assertTrue(arrList.contains(sg.chooseRandomElement(arrList)));
     }
 
 }
