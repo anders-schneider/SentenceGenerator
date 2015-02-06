@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 /**
  * Represents a BNF grammar.
- * @author <your name goes here>
+ * @author Anders Schneider
  */
 public class Grammar {
     private Map<String, ListOfDefinitions> grammar; // rules for all the nonterminals

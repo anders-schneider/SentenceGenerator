@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author <your name goes here>
+ * @author Anders Schneider
  */
 public class ListOfDefinitionsTest {
 

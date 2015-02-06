@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * (each of which is a list of terminals and/or nonterminals), but
  * does not include the thing being defined.
  * 
- * @author <your name goes here>
+ * @author Anders Schneider
  */
 public class ListOfDefinitions extends ArrayList<SingleDefinition> {
     
